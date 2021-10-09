@@ -59,3 +59,9 @@ Route::get('/dashboard/team/{brand}/edit','TeamController@edit');
 Route::patch('/dashboard/team/{brand}','TeamController@update');
 Route::delete('/dashboard/team/{brand}','TeamController@destroy');
 Route::get('/dashboard/team/{brand}','TeamController@show');
+
+// Manage works Section
+Route::get('/dashboard/works','WorkCountController@index');
+Route::get('/dashboard/works/add','WorkCountController@create');
+Route::post('/dashboard/works/add/store','WorkCountController@store');
+

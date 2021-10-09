@@ -31,13 +31,12 @@
                </div>
             </div>
             <div class="row">
+               @foreach ($teams as $t)
                <!-- Team Block Start -->
                <div class="col-lg-4 col-md-6">
-
-                  @foreach ($teams as $t)
                   <div class="team-item wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
                      <div class="image">
-                        <img src="{{ asset("storage/$t->Image") }}" alt="image">
+                        <img src="{{ asset("storage/$t->Image") }}">
                         <ul class="social">
                            <li>
                               <a href="{{ $t->Facebook }}" target="_blank">
@@ -62,10 +61,9 @@
                         </div>
                      </div>
                   </div>
-                  @endforeach
-
                </div>
                <!-- Team Block End -->
+               @endforeach
                
             </div>
          </div>

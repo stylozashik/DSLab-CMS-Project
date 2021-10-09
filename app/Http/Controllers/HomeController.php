@@ -15,6 +15,7 @@ class HomeController extends Controller
         $about_one_image = DB::table('home_about_one_images')->latest()->first();
         $about_two = DB::table('home_about_twos')->latest()->first();
         $about_two_image = DB::table('home_about_two_images')->latest()->first();
+        $works = DB::table('work_counters')->latest()->first();
 
 
         
@@ -26,6 +27,7 @@ class HomeController extends Controller
             'about_one_image',
             'about_two',
             'about_two_image',
+            'works',
         ));
     }
 

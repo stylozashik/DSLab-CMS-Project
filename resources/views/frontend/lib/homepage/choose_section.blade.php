@@ -29,7 +29,7 @@
                               <div class="choose-icon">
                                  <i class="fa fa-users"></i>
                               </div>
-                              <h2><span class="counter">200</span>+</h2>
+                              <h2><span class="counter">{{ $works->collaboration }}</span>+</h2>
                               <p>Companies Collboration</p>
                               <div class="choose-icon-bottom">
                                  <i class="fa fa-users"></i>
@@ -41,7 +41,7 @@
                               <div class="choose-icon">
                                  <i class="fa fa-cube"></i>
                               </div>
-                              <h2><span class="counter">20</span>+</h2>
+                              <h2><span class="counter">{{ $works->team }}</span>+</h2>
                               <p>Awesome Team</p>
                               <div class="choose-icon-bottom">
                                  <i class="fa fa-cube"></i>
@@ -53,7 +53,7 @@
                               <div class="choose-icon">
                                  <i class="fa fa-thumbs-up"></i>
                               </div>
-                              <h2><span class="counter">135</span>+</h2>
+                              <h2><span class="counter">{{ $works->publication }}</span>+</h2>
                               <p>Success Publication</p>
                               <div class="choose-icon-bottom">
                                  <i class="fa fa-thumbs-up"></i>
@@ -65,7 +65,7 @@
                               <div class="choose-icon">
                                  <i class="fa fa-trophy"></i>
                               </div>
-                              <h2><span class="counter">14</span>+</h2>
+                              <h2><span class="counter">{{ $works->awards }}</span>+</h2>
                               <p>Research Awards</p>
                               <div class="choose-icon-bottom">
                                  <i class="fa fa-trophy"></i>

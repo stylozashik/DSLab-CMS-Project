@@ -233,6 +233,30 @@
             </ul>
           </li>
 
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-image"></i>
+              <p>
+                Works Section
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('/dashboard/works') }}" class="nav-link">
+                  <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
+                  <p>All Works</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/dashboard/works/add') }}" class="nav-link">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Add Works</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
          
 
           
