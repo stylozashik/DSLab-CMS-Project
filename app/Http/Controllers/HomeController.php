@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use DB;
+use Session;
 
 class HomeController extends Controller
 {
@@ -36,14 +38,12 @@ class HomeController extends Controller
         return view('frontend.about' , compact('brand'));
     }
 
-    public function research_area(){
-        $brand = DB::table('logos')->latest()->first();
-        return view('frontend.research_area' , compact('brand'));
-    }
+
     
     public function research_topic(){
         $brand = DB::table('logos')->latest()->first();
-        return view('frontend.research_topic' , compact('brand'));
+        $topics = \App\Models\ResearchTopic::orderBy('id', 'DESC')->get()->all();
+        return view('frontend.research_topic' , compact('brand' , 'topics'));
     }
 
     public function research_publication(){
@@ -53,8 +53,10 @@ class HomeController extends Controller
 
     public function team(){
         $brand = DB::table('logos')->latest()->first();
+        $teachers = DB::table('our_teachers')->get()->all();
         $teams = DB::table('teams')->get()->all();
-        return view('frontend.team' , compact('brand' , 'teams'));
+        $students = DB::table('our_students')->get()->all();
+        return view('frontend.team' , compact('brand' , 'teams' , 'teachers' , 'students'));
     }
 
     public function events(){
@@ -70,6 +72,29 @@ class HomeController extends Controller
     public function contact(){
         $brand = DB::table('logos')->latest()->first();
         return view('frontend.contact' , compact('brand'));
+    }
+
+    public function contact_store(Request $request){
+        $contact = new \App\Models\Contact ;
+
+        //validate form data field
+        $validatedData = $request->validate([
+            'Name' => 'required',
+            'Email' => 'required',
+            'Subject' => 'required',
+            'Phone' => 'required',
+            'Message' => 'required',
+        ]);
+
+        $contact->Name = request('Name');
+        $contact->Email = request('Email');
+        $contact->Subject = request('Subject');
+        $contact->Phone = request('Phone');
+        $contact->Message = request('Message');
+
+        $contact->save();
+        Session::put('notify','Message send successfully.');
+        return Redirect::to('/contact');
     }
 
     

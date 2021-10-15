@@ -13,6 +13,18 @@ Route::get('/team', "HomeController@team");
 Route::get('/events', "HomeController@events");
 Route::get('/resources', "HomeController@resources");
 Route::get('/contact', "HomeController@contact");
+Route::post('/contact/store', "HomeController@contact_store");
+
+// Admin login
+Route::get('/admin-login','AdminController@login');
+Route::post('/admin-data','AdminController@admin_data');
+
+// Admin logout
+Route::get('/admin-logout','SuperAdminController@logout');
+
+// Admin Profile
+Route::get('/dashboard/profile/admin','SuperAdminController@admin_profile');
+Route::patch('/dashboard/profile/admin/update','SuperAdminController@update_admin_profile');
 
 #Backend Routes
 Route::get('/dashboard', "SuperAdminController@index");
@@ -60,8 +72,40 @@ Route::patch('/dashboard/team/{brand}','TeamController@update');
 Route::delete('/dashboard/team/{brand}','TeamController@destroy');
 Route::get('/dashboard/team/{brand}','TeamController@show');
 
+// Manage Teachers Section
+Route::get('/dashboard/teacher','TeacherController@index');
+Route::get('/dashboard/teacher/add','TeacherController@create');
+Route::post('/dashboard/teacher/add/store','TeacherController@store');
+Route::get('/dashboard/teacher/{brand}/edit','TeacherController@edit');
+Route::patch('/dashboard/teacher/{brand}','TeacherController@update');
+Route::delete('/dashboard/teacher/{brand}','TeacherController@destroy');
+Route::get('/dashboard/teacher/{brand}','TeacherController@show');
+
+// Manage Students Section
+Route::get('/dashboard/student','StudentController@index');
+Route::get('/dashboard/student/add','StudentController@create');
+Route::post('/dashboard/student/add/store','StudentController@store');
+Route::get('/dashboard/student/{brand}/edit','StudentController@edit');
+Route::patch('/dashboard/student/{brand}','StudentController@update');
+Route::delete('/dashboard/student/{brand}','StudentController@destroy');
+Route::get('/dashboard/student/{brand}','StudentController@show');
+
 // Manage works Section
 Route::get('/dashboard/works','WorkCountController@index');
 Route::get('/dashboard/works/add','WorkCountController@create');
 Route::post('/dashboard/works/add/store','WorkCountController@store');
 
+
+// Manage contact Section
+Route::get('/dashboard/messages','ContactController@index');
+Route::delete('/dashboard/messages/{Contact}','ContactController@destroy');
+
+
+// Manage research topics Section
+Route::get('/dashboard/research-topic','ResearchTopicController@index');
+Route::get('/dashboard/research-topic/add','ResearchTopicController@create');
+Route::post('/dashboard/research-topic/add/store','ResearchTopicController@store');
+Route::get('/dashboard/research-topic/{brand}/edit','ResearchTopicController@edit');
+Route::patch('/dashboard/research-topic/{brand}','ResearchTopicController@update');
+Route::delete('/dashboard/research-topic/{brand}','ResearchTopicController@destroy');
+Route::get('/dashboard/research-topic/{brand}','ResearchTopicController@show');

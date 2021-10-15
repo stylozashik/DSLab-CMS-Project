@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 
-class TeamController extends Controller
+class TeamController extends SuperAdminController
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,9 @@ class TeamController extends Controller
      */
     public function index()
     {
+        $this->AdminCheckAuth();
+
+
         $teams = DB::table('teams')->get()->all();
         return view('backend.team' , compact('teams'));
     }
@@ -26,6 +29,8 @@ class TeamController extends Controller
      */
     public function create()
     {
+        $this->AdminCheckAuth();
+
         return view('backend.team.add');
     }
 
@@ -37,6 +42,8 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
+        $this->AdminCheckAuth();
+
         $team = new \App\Models\Team ;
 
         //validate form data field

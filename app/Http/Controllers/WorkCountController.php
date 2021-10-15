@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 
-class WorkCountController extends Controller
+class WorkCountController extends SuperAdminController
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,7 @@ class WorkCountController extends Controller
      */
     public function index()
     {
+        $this->AdminCheckAuth();
         return view('backend.works_counter');
     }
 
@@ -25,6 +26,7 @@ class WorkCountController extends Controller
      */
     public function create()
     {
+        $this->AdminCheckAuth();
         return view('backend.works_count.add');
     }
 
@@ -36,6 +38,7 @@ class WorkCountController extends Controller
      */
     public function store(Request $request)
     {
+        $this->AdminCheckAuth();
         $works = new \App\Models\WorkCounter ;
 
         //validate form data field

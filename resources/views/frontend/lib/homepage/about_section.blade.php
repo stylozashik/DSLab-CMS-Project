@@ -18,7 +18,7 @@
                      <div class="about-left wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
                         <h3>{{ $about_one->home_about_one_title }}</h3>
                         <p>{{ $about_one->home_about_one_description }}</p>
-                        <a href="" class="theme-btn mt-4">More About Us <span class="fa fa-chevron-right"></span></a>
+                        <a href="{{ url('/about') }}" target="_blank" class="theme-btn mt-4">More About Us <span class="fa fa-chevron-right"></span></a>
                      </div>
                   </div>
                   <div class="col-lg-6">
@@ -44,7 +44,7 @@
                      <div class="about-left wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s">
                      <h3>{{ $about_two->home_about_two_title }}</h3>
                         <p>{{ $about_two->home_about_two_description }}</p>
-                        <a href="about.html" class="theme-btn mt-4">More About Us<span class="fa fa-chevron-right"></span></a>
+                        <a href="{{ url('/about') }}" target="_blank" class="theme-btn mt-4">More About Us<span class="fa fa-chevron-right"></span></a>
                      </div>
                   </div>
                </div>

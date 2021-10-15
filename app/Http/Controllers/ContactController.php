@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use DB;
 
-class LogoController extends SuperAdminController
+class ContactController extends SuperAdminController
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,8 @@ class LogoController extends SuperAdminController
     public function index()
     {
         $this->AdminCheckAuth();
-
-        $b_image = DB::table('logos')->latest()->first();
-        return view('backend.logo',compact('b_image'));
+        $contacts = DB::table('contacts')->get()->all();        
+        return view('backend.contact' , compact('contacts'));
     }
 
     /**
@@ -39,25 +37,7 @@ class LogoController extends SuperAdminController
      */
     public function store(Request $request)
     {
-        $this->AdminCheckAuth();
-
-        $image = new \App\Models\Logo ;
-
-        //validate form data field
-        $validatedData = $request->validate([
-
-            'Logo' => 'required', 
-        ]);
-
-        $image_file = $request->file('Logo');
-        if($image_file){
-            $imagename = 'Logo' . time() . '.' . $image_file->getClientOriginalExtension();
-            $image_path = $image_file->storeAs('media',$imagename);
-            $image->Logo = $image_path ;
-        }
-        $image->save();
-
-        return Redirect::to('/dashboard');
+        //
     }
 
     /**
@@ -102,6 +82,9 @@ class LogoController extends SuperAdminController
      */
     public function destroy($id)
     {
-        //
+        $this->AdminCheckAuth();
+        $find_contact = \App\Models\Contact::findOrFail($id) ;
+        $find_contact->delete();
+        return redirect('/dashboard/messages');
     }
 }

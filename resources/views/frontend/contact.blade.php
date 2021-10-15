@@ -2,6 +2,7 @@
 
 @section('main_content_frontend')
 
+
 <section class="breadcrumb-area">
          <div class="breadcrumb-shape"></div>
          <div class="container">
@@ -28,36 +29,49 @@
             <div class="row">
                <div class="col-lg-8">
                   <div class="contact-form-wrapper wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.4s">
-                     <form>
+
+                  @if(Session::has('notify'))
+                     <div class="alert alert-success" role="alert">
+                        <p class="text-center">
+                              {{ Session::get('notify') }} </strong>
+                        </p>
+                     </div>
+                                       
+                     {{ Session::forget('notify') }}
+                  @endif
+
+                     <form role="form" action="{{ url('/contact/store') }}" method="post" enctype="multipart/form-data">
+                     @csrf
                         <div class="row">
                            <div class="col-lg-6">
+
                               <div class="form-group">
                                  <label for="name">Name </label>
-                                 <input type="text" class="input-field" id="name" placeholder="Enter Your Name">
+                                 <input type="text" class="input-field" id="name" name="Name" placeholder="Enter Your Name">
                               </div>
                            </div>
                            <div class="col-lg-6">
                               <div class="form-group">
                                  <label for="email">Email </label>
-                                 <input type="text" class="input-field" id="email" placeholder="Enter Your Email">
+                                 <input type="text" class="input-field" id="email" name="Email" placeholder="Enter Your Email">
                               </div>
                            </div>
                            <div class="col-lg-6">
                               <div class="form-group">
                                  <label for="subjict">Subjict </label>
-                                 <input type="text" class="input-field" id="subjict" placeholder="Write Your Subjict">
+                                 <input type="text" class="input-field" id="subjict" name="Subject" placeholder="Write Your Subjict">
                               </div>
                            </div>
                            <div class="col-lg-6">
                               <div class="form-group">
                                  <label for="phone">Phone </label>
-                                 <input type="text" class="input-field" id="phone" placeholder="Enter Your Phone No">
+                                 <input type="text" class="input-field" id="phone" name="Phone" placeholder="Enter Your Phone No">
                               </div>
                            </div>
                            <div class="col-lg-12">
                               <div class="form-group button-area">
                                  <label for="message">Message </label>
-                                 <textarea id="message" class="input-field textarea" placeholder="Write Your Message"></textarea>
+                                 <textarea id="message" class="input-field textarea" name="Message" placeholder="Write Your Message"></textarea>
                               </div>
                            </div>
                            <div class="col-lg-12">

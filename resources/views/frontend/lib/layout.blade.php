@@ -54,7 +54,6 @@
                               <li class="dropdown">
                                  <a href="javascript:;">Research</a>
                                  <ul>
-                                    <li><a href="{{ url('/research-area') }}">Research Area</a></li>
                                     <li><a href="{{ url('/research-topic') }}">Research Topic</a></li>
                                     <li><a href="{{ url('/research-publication') }}">Research Publication</a></li>
                                  </ul>

@@ -189,25 +189,26 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-image"></i>
               <p>
-                Service Section
+                Works Section
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('/dashboard/services') }}" class="nav-link">
+                <a href="{{ url('/dashboard/works') }}" class="nav-link">
                   <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
-                  <p>Services List</p>
+                  <p>All Works</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/dashboard/service/add') }}" class="nav-link">
+                <a href="{{ url('/dashboard/works/add') }}" class="nav-link">
                   <i class="nav-icon fas fa-plus"></i>
-                  <p>Add Service</p>
+                  <p>Add Works</p>
                 </a>
               </li>
             </ul>
           </li>
+
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -237,56 +238,89 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-image"></i>
               <p>
-                Works Section
+                Teacher Section
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('/dashboard/works') }}" class="nav-link">
+                <a href="{{ url('/dashboard/teacher') }}" class="nav-link">
                   <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
-                  <p>All Works</p>
+                  <p>All Teachers</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/dashboard/works/add') }}" class="nav-link">
+                <a href="{{ url('/dashboard/teacher/add') }}" class="nav-link">
                   <i class="nav-icon fas fa-plus"></i>
-                  <p>Add Works</p>
+                  <p>Add Teacher</p>
                 </a>
               </li>
             </ul>
           </li>
 
-         
-
-          
-
-          
-
-          
-          
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-image"></i>
               <p>
-                Footer Section
+                Student Section
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('/dashboard/footer') }}" class="nav-link">
+                <a href="{{ url('/dashboard/student') }}" class="nav-link">
                   <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
-                  <p>Add Footer</p>
+                  <p>All Students</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/dashboard/footer/edit') }}" class="nav-link">
+                <a href="{{ url('/dashboard/student/add') }}" class="nav-link">
                   <i class="nav-icon fas fa-plus"></i>
-                  <p>Edit Footer</p>
+                  <p>Add Student</p>
                 </a>
               </li>
-              
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-image"></i>
+              <p>
+                Research Topics Section
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('/dashboard/research-topic') }}" class="nav-link">
+                  <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
+                  <p>All Research Topics</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/dashboard/research-topic/add') }}" class="nav-link">
+                  <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
+                  <p>Add Research Topics</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-image"></i>
+              <p>
+                Contact Section
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('/dashboard/messages') }}" class="nav-link">
+                  <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
+                  <p>All Messages</p>
+                </a>
+              </li>
             </ul>
           </li>
 
@@ -329,7 +363,7 @@
   <script>document.write(new Date().getFullYear())</script>
     Copyright &copy; All Rights Reserved By <a href="{{ url('https://daffodilvarsity.edu.bd/') }}"><strong>Daffodil International University </a></strong>
     <div class="float-right d-none d-sm-inline-block">
-    Version : 1.0.1 | Developed By <span><a href="https://www.freelancer.com/u/rexbdsoft" target="_blank">Ashikur</a></span>
+    Version : 3.0.1 | Developed By <span><a href="https://www.freelancer.com/u/rexbdsoft" target="_blank">Ashikur</a></span>
     </div>
   </footer>
 

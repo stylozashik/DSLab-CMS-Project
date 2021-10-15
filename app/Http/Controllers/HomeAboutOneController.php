@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 
-class HomeAboutOneController extends Controller
+class HomeAboutOneController extends SuperAdminController
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,8 @@ class HomeAboutOneController extends Controller
      */
     public function index()
     {
+
+        $this->AdminCheckAuth();
         return view('backend.about_one.add');
     }
 
@@ -36,6 +38,7 @@ class HomeAboutOneController extends Controller
      */
     public function store(Request $request)
     {
+        $this->AdminCheckAuth();
         $about_one = new \App\Models\HomeAboutOne ;
 
         //validate form data field
@@ -71,6 +74,7 @@ class HomeAboutOneController extends Controller
      */
     public function edit()
     {
+        $this->AdminCheckAuth();
         $about_one = DB::table('home_about_ones')->latest()->first();
         return view('backend.about_one.edit',compact('about_one'));
     }
@@ -84,6 +88,7 @@ class HomeAboutOneController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->AdminCheckAuth();
         $about_one = DB::table('home_about_ones')->latest()->first();
         $find_about_one = \App\Models\HomeAboutOne::findOrFail($about_one->home_about_one_id) ;
 
@@ -114,11 +119,13 @@ class HomeAboutOneController extends Controller
 
     // Funtions for image
     public function about_one_image(){
+        $this->AdminCheckAuth();
         $b_image = DB::table('home_about_one_images')->latest()->first();
         return view('backend.about_one.image',compact('b_image'));
     }
 
     public function about_one_image_store(Request $request){
+        $this->AdminCheckAuth();
         $image = new \App\Models\HomeAboutOneImage ;
 
         //validate form data field

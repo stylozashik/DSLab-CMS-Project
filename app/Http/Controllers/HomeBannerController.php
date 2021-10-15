@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 
-class HomeBannerController extends Controller
+class HomeBannerController extends SuperAdminController
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,7 @@ class HomeBannerController extends Controller
      */
     public function index()
     {
+        $this->AdminCheckAuth();
         return view('backend.banner');
     }
 
@@ -36,6 +37,7 @@ class HomeBannerController extends Controller
      */
     public function store(Request $request)
     {
+        $this->AdminCheckAuth();
         $banner = new \App\Models\HomeBannerContent ;
 
         //validate form data field
@@ -75,6 +77,7 @@ class HomeBannerController extends Controller
      */
     public function edit()
     {
+        $this->AdminCheckAuth();
         $banner = DB::table('home_banner_content_table')->latest()->first();
         return view('backend.edit_banner_content',compact('banner'));
     }
@@ -88,6 +91,7 @@ class HomeBannerController extends Controller
      */
     public function update(Request $request)
     {
+        $this->AdminCheckAuth();
         $banner = DB::table('home_banner_content_table')->latest()->first();
         $find_banner = \App\Models\HomeBannerContent::findOrFail($banner->home_banner_content_id) ;
 
@@ -121,11 +125,14 @@ class HomeBannerController extends Controller
     }
 
     public function banner_image(){
+        $this->AdminCheckAuth();
         $b_image = DB::table('home_banner_image_table')->latest()->first();
         return view('backend.banner_image',compact('b_image'));
     }
 
     public function banner_image_store(Request $request){
+        $this->AdminCheckAuth();
+
         $image = new \App\Models\HomeBannerImage ;
 
         //validate form data field

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 
-class HomeAboutTwoController extends SuperAdminController
+class StudentController extends SuperAdminController
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,9 @@ class HomeAboutTwoController extends SuperAdminController
     public function index()
     {
         $this->AdminCheckAuth();
-        return view('backend.about_two.add');
+
+        $students = DB::table('our_students')->get()->all();
+        return view('backend.student' , compact('students'));
     }
 
     /**
@@ -26,7 +28,9 @@ class HomeAboutTwoController extends SuperAdminController
      */
     public function create()
     {
-        //
+        $this->AdminCheckAuth();
+
+        return view('backend.student.add');
     }
 
     /**
@@ -38,18 +42,32 @@ class HomeAboutTwoController extends SuperAdminController
     public function store(Request $request)
     {
         $this->AdminCheckAuth();
-        $about_two = new \App\Models\HomeAboutTwo ;
+
+        $student = new \App\Models\OurStudent ;
 
         //validate form data field
         $validatedData = $request->validate([
-            'home_about_two_title' => 'required',
-            'home_about_two_description' => 'required',
+            'Name' => 'required',
+            'Facebook' => 'required',
+            'Twitter' => 'required',
+            'Linkedin' => 'required',
+            'Image' => 'required',
         ]);
 
-        $about_two->home_about_two_title = request('home_about_two_title');
-        $about_two->home_about_two_description = request('home_about_two_description');
+        $student->Name = request('Name');
+        $student->Facebook = request('Facebook');
+        $student->Twitter = request('Twitter');
+        $student->Linkedin = request('Linkedin');
 
-        $about_two->save();
+        $image_file = $request->file('Image');
+        if($image_file){
+            $imagename = request('Name') . time() . '.' . $image_file->getClientOriginalExtension();
+            $image_path = $image_file->storeAs('media',$imagename);
+            $student->Image = $image_path ;
+        }
+        
+
+        $student->save();
 
         return Redirect::to('/dashboard');
     }
@@ -71,11 +89,9 @@ class HomeAboutTwoController extends SuperAdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        $this->AdminCheckAuth();
-        $about_two = DB::table('home_about_twos')->latest()->first();
-        return view('backend.about_two.edit',compact('about_two'));
+        //
     }
 
     /**
@@ -99,33 +115,5 @@ class HomeAboutTwoController extends SuperAdminController
     public function destroy($id)
     {
         //
-    }
-
-    // Funtions for image
-    public function about_two_image(){
-        $this->AdminCheckAuth();
-        $b_image = DB::table('home_about_two_images')->latest()->first();
-        return view('backend.about_two.image',compact('b_image'));
-    }
-
-    public function about_two_image_store(Request $request){
-        $this->AdminCheckAuth();
-        $image = new \App\Models\HomeAboutTwoImage ;
-
-        //validate form data field
-        $validatedData = $request->validate([
-
-            'home_about_two_image' => 'required', 
-        ]);
-
-        $image_file = $request->file('home_about_two_image');
-        if($image_file){
-            $imagename = 'About_two_Image' . time() . '.' . $image_file->getClientOriginalExtension();
-            $image_path = $image_file->storeAs('media',$imagename);
-            $image->home_about_two_image = $image_path ;
-        }
-        $image->save();
-
-        return Redirect::to('/dashboard');
     }
 }

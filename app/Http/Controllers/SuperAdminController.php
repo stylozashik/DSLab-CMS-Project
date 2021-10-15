@@ -3,82 +3,56 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
+use DB;
+use Illuminate\Support\Facades\Redirect;
 
 class SuperAdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    public function index(){
+        $this->AdminCheckAuth();
         return view('backend.dashboard');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function logout(){
+        Session::forget('admin_id');
+        return redirect('/dashboard');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function AdminCheckAuth(){
+        $id = Session::get('admin_id');
+        if($id){
+            return;
+        }else{
+            return redirect('/admin-login')->send();
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function admin_profile(){
+        $admin_profile = DB::table('admin_profiles')->latest()->first();
+        return view('backend.admin.profile',compact('admin_profile'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function update_admin_profile(Request $request){
+        $profile = DB::table('admin_profiles')->latest()->first();
+
+        $find_profile = \App\AdminProfile::findOrFail($profile->admin_id) ;
+
+        //validate form data field
+        $validatedData = $request->validate([
+            'admin_email' => 'required',
+            'admin_password' => 'required',
+            'admin_name' => 'required', 
+        ]);
+        $find_profile->admin_email = request('admin_email');
+        $find_profile->admin_password = md5(request('admin_password'));
+        $find_profile->admin_name = request('admin_name');
+
+        $find_profile->save();
+
+        Session::put('admin_name',$find_profile->admin_name);
+
+        return Redirect::to('/dashboard/profile/admin');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
